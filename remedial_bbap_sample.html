@@ -1,0 +1,42 @@
+<html>
+<header>
+    <meta name="viewport" content="width=device-width">
+    <style>
+        #AmazonPayButton {
+            min-height: 60px !important;
+            height: 60px !important;
+        }
+    </style>
+</header>
+
+<body>
+
+    <script type="text/javascript" src="amazonpayAssist_en.js"></script>
+    <script src="https://static-eu.payments-amazon.com/checkout.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+
+        amazonpayAssist('AmazonPayButton', {
+            type: 'card',
+            color: 'Orange'
+        }).fadeIn(1);
+
+        amazon.Pay.renderButton('#AmazonPayButton', {
+            // set checkout environment
+            merchantId: 'AQRSI3JZA9TID',
+            ledgerCurrency: 'GBP',
+            sandbox: true,
+            // customize the buyer experience
+            checkoutLanguage: 'en_GB',
+            productType: 'PayAndShip',
+            placement: 'Home',
+            // configure Create Checkout Session request
+            createCheckoutSessionConfig: {
+                payloadJSON: '{"storeId":"amzn1.application-oa2-client.xxxxxxxxxxxxxxxxxxxxxxx","webCheckoutDetails":{"checkoutReviewReturnUrl":"https://xxxxxxxxxxxxxx", "checkoutMode": "ProcessOrder"}, "paymentDetails": { "paymentIntent": "Authorize", "chargeAmount": { "amount": "1", "currencyCode": "JPY" } }, "addressDetails": { "addressLine1": "XXXXX", "addressLine2": "XXXXX", "addressLine3": "XXXXX", "name": "XXXXX", "stateOrRegion": "XXXXX", "countryCode": "XXXXX", "postalCode": "XXXXX", "phoneNumber": "XXXXX" }, "scopes":  ["name", "email", "postalCode", "shippingAddress", "phoneNumber", "billingAddress"]}',
+                signature: 'uwO+Axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx==',
+                publicKeyId: 'AFENXXXXXXXXXXXXXXXXX'
+            }
+        });
+    </script>
+</body>
+
+</html>

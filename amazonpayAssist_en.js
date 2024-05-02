@@ -205,84 +205,83 @@ const amazonpayAssist = (function () {
     const apayAssistHelper = (function (option) {
 
       const designstyles = {
-        form: {
-          colorStyles: {
-            blue: {
-              image: 'https://m.media-amazon.com/images/G/01/AmazonPay/BBAP-PaymentIssueGraphic-Corrected.svg',
-              titleColor: '#0099d9',
-            },
-            green: {
-              image: 'https://m.media-amazon.com/images/G/01/AmazonPay/BBAP-PaymentIssueGraphic-Corrected.svg',
-              titleColor: '#049796',
-            },
-            orange: {
-              image: 'https://m.media-amazon.com/images/G/01/AmazonPay/BBAP-PaymentIssueGraphic-Corrected.svg',
-              titleColor: '#D19200',
-            },
-            lightblue: {
-              image: 'https://m.media-amazon.com/images/G/01/AmazonPay/BBAP-PaymentIssueGraphic-Corrected.svg',
-              titleColor: '#063B73',
-            },
-            lightgreen: {
-              image: 'https://m.media-amazon.com/images/G/01/AmazonPay/BBAP-PaymentIssueGraphic-Corrected.svg',
-              titleColor: '#063B73',
-            },
-            lightorange: {
-              image: 'https://m.media-amazon.com/images/G/01/AmazonPay/BBAP-PaymentIssueGraphic-Corrected.svg',
-              titleColor: '#063B73',
-            }
-          },
-          titleText: 'Are you having difficulty inputting your details?',
-          contentText: [
-            'You can easily pay',
-            ' using your Amazon account instead'
-          ]
-        },
         card: {
-          colorStyles: {
-            blue: {
+          countryType: {
+            UK: {
               image: 'https://m.media-amazon.com/images/G/01/AmazonPay/BBAP-PaymentIssueGraphic-Corrected.svg',
               titleColor: '#0099d9',
+              titleText: 'Would you like to use Amazon Pay instead?',
+              buttonGuideText: 'Click the button below to order with your Amazon account.',
+              contentText: [
+                'You can pay using the information and payment methods from your Amazon account.',
+                ''
+              ] ,
             },
-            green: {
+            US: {
              image: 'https://m.media-amazon.com/images/G/01/AmazonPay/BBAP-PaymentIssueGraphic-Corrected.svg',
-             titleColor: '#049796',
+              titleColor: '#0099d9',
+              titleText: 'Would you like to use Amazon Pay instead?',
+              buttonGuideText: 'Click the button below to order with your Amazon account.',
+              contentText: [
+                'You can pay using the information and payment methods from your Amazon account.',
+                ''
+              ] ,
             },
-            orange: {
-             image: 'https://m.media-amazon.com/images/G/01/AmazonPay/BBAP-PaymentIssueGraphic-Corrected.svg',
-              titleColor: '#D19200',
+            DE: {
+             image: 'https://m.media-amazon.com/images/G/01/AmazonPay/BBAP-PaymentIssue_DE.svg',
+              titleColor: '#0099d9',
+              titleText: 'Möchten Sie stattdessen Amazon Pay nutzen?',
+              buttonGuideText: 'Klicken Sie auf den Amazon Pay-Button, um Ihre Bestellung abzuschließen.',
+              contentText: [
+                'Sie können mit den Informationen und Zahlungsarten aus Ihrem Amazon-Konto bezahlen.',
+                ''
+              ] ,
             },
-            lightblue: {
-             image: 'https://m.media-amazon.com/images/G/01/AmazonPay/BBAP-PaymentIssueGraphic-Corrected.svg',
-              titleColor: '#063B73',
+            ES: {
+             image: 'https://m.media-amazon.com/images/G/01/AmazonPay/BBAP-PaymentIssue_ES.svg',
+              titleColor: '#0099d9',
+              titleText: '¿Preferirías usar Amazon Pay?',
+              buttonGuideText: 'Haz clic en el botón Amazon Pay para completar tu pedido.',
+              contentText: [
+                'Puedes pagar utilizando la información y los métodos de pago de tu cuenta de Amazon.',
+                ''
+              ] ,
             },
-            lightgreen: {
-             image: 'https://m.media-amazon.com/images/G/01/AmazonPay/BBAP-PaymentIssueGraphic-Corrected.svg',
-              titleColor: '#063B73',
+            FR: {
+             image: 'https://m.media-amazon.com/images/G/01/AmazonPay/BBAP-PaymentIssue_FR.svg',
+              titleColor: '#0099d9',
+              titleText: 'Souhaitez-vous utiliser Amazon Pay ?',
+              buttonGuideText: 'Cliquez sur le bouton Amazon Pay pour finaliser votre commande.',
+              contentText: [
+                'Vous pouvez payer en utilisant les informations et les moyens de paiement enregistrés sur votre compte Amazon.',
+                ''
+              ] ,
             },
-            lightorange: {
-             image: 'https://m.media-amazon.com/images/G/01/AmazonPay/BBAP-PaymentIssueGraphic-Corrected.svg',
-              titleColor: '#063B73',
+            IT: {
+             image: 'https://m.media-amazon.com/images/G/01/AmazonPay/BBAP-PaymentIssue_IT.svg',
+              titleColor: '#0099d9',
+              titleText: 'Vuoi usare Amazon Pay?',
+              buttonGuideText: "Clicca sul pulsante Amazon Pay per completare l'ordine.",
+              contentText: [
+                'Puoi pagare usando le informazioni e i metodi di pagamento salvati nel tuo account Amazon.',
+                ''
+              ] ,
             }
-          },
-          titleText: 'Would you like to use Amazon Pay instead?',
-          contentText: [
-            'You can pay using the information and payment methods from your Amazon account.',
-            ''
-          ] 
+          } 
         }
       };
 
       const typeText = option.type || 'form';
       const type = typeText.toLocaleLowerCase() in designstyles ? typeText.toLocaleLowerCase() : 'form';
-      const colorText = option.color || 'green';
-      const color = colorText.toLocaleLowerCase() in designstyles[type].colorStyles ? colorText.toLocaleLowerCase() : 'green';
+      const countryText = option.country || 'US';
+      const country = countryText.toLocaleUpperCase() in designstyles[type].countryType ? countryText.toLocaleUpperCase() : 'US';
       const design = designstyles[type];
       return {
-        image: design.colorStyles[color].image,
-        titleColor: design.colorStyles[color].titleColor,
-        titleText: design.titleText,
-        contentText: design.contentText
+        image: design.countryType[country].image,
+        titleColor: design.countryType[country].titleColor,
+        titleText: design.countryType[country].titleText,
+        contentText: design.countryType[country].contentText,
+        buttonGuideText: design.countryType[country].buttonGuideText
       }
     })(option);
 
@@ -365,7 +364,7 @@ const amazonpayAssist = (function () {
             .styles(apayAssistStyles.subTextClass)
             .parts(
               //animationNode.arrow('left'),
-              animationNode.text('Click the button below to order with your Amazon account.'),
+              animationNode.text(apayAssistHelper.buttonGuideText),
               //animationNode.arrow('right'),
             ),
           createNode('div')

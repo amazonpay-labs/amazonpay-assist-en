@@ -35,9 +35,21 @@ The ‘fadeIn’ attribute sets the time (in seconds) between the page render, a
 
 ```
         amazonpayAssist('AmazonPayButton', {
-            type: 'card'
+            type: 'card',
+            country: 'US'
         }).fadeIn(3);
 
 ```
+
+## Customise based on country
+
+The `country` attribute in the `amazonPayAssist` method and `ledgerCurrency`, `checkoutLanguage` in the `amazon.Pay.renderButton`method to customise the checkout experience based on the country.
+
+
+| Parameter | Description |
+| :--------- | :----------- |
+| country | Used to customise the checkout experience based on the country. <br/> <br/> Supported values: US, UK, DE, FR, IT, ES
+| ledgerCurrency | Ledger currency provided during registration for the given merchant identifier. Supported values: USD, GBP, EUR, JPY
+| checkoutLanguage | Language used to render the button and text on Amazon Pay hosted pages. Please note that supported language(s) is dependent on the region that your Amazon Pay account was registered for Supported values: <br/> US merchants - 'en_US' <br/> EU/UK merchants - 'en_GB', 'de_DE', 'fr_FR', 'it_IT', 'es_ES' <br/> JP merchants - 'ja_JP'`
 
 

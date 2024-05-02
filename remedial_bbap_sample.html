@@ -17,7 +17,7 @@
 
         amazonpayAssist('AmazonPayButton', {
             type: 'card',
-            color: 'Orange'
+            country: 'UK'   //Based on the store set Country Code - Supported Values: UK, US, DE, ES, FR, IT
         }).fadeIn(1);
 
         amazon.Pay.renderButton('#AmazonPayButton', {
@@ -26,7 +26,7 @@
             ledgerCurrency: 'GBP',
             sandbox: true,
             // customize the buyer experience
-            checkoutLanguage: 'en_GB',
+            checkoutLanguage: 'en_GB', // customise the language based on country
             productType: 'PayAndShip',
             placement: 'Home',
             // configure Create Checkout Session request
